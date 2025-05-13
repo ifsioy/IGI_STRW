@@ -1,7 +1,7 @@
 import csv
 import pickle
 
-from IGI.LR4.input_handler import input_int
+from input_handler import input_int
 
 
 class HistoricalEvent:
@@ -51,7 +51,6 @@ def handle_century_search(events):
         print(f"{event.year} - {event.description}")
 
 def task1():
-    # Исходные данные
     events_data = [
         HistoricalEvent(862, "Первое упоминание о Полоцке"),
         HistoricalEvent(1240, "Битва на Немиге"),
@@ -61,13 +60,11 @@ def task1():
         HistoricalEvent(2020, "Президентские выборы")
     ]
 
-    # Сохраняем в оба формата
     DataManager.save_to_csv(events_data, 'history.csv')
     DataManager.save_to_pickle(events_data, 'history.pkl')
 
-    # Загрузка данных (можно выбрать любой формат)
     try:
-        loaded_events = DataManager.load_from_csv('history.csv')  # Или load_from_pickle
+        loaded_events = DataManager.load_from_csv('history.csv')
         handle_century_search(loaded_events)
     except FileNotFoundError:
         print("Ошибка: Файлы данных не найдены")

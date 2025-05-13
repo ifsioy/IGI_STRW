@@ -5,8 +5,11 @@ version 1
 Babchanok Maksim
 06.04.2025
 """
-from IGI.LR4.tasks.task1 import task1
-from IGI.LR4.tasks.task2 import task2
+from tasks.task1 import task1
+from tasks.task2 import task2
+from tasks.task3 import task3
+from tasks.task4 import task4
+from tasks.task5 import task5
 
 
 def main_menu():
@@ -26,11 +29,12 @@ def main_menu():
             elif choice == 2:
                 task2()
             elif choice == 3:
-                pass
+                task = task3()
+                task.run()
             elif choice == 4:
-                pass
+                task4()
             elif choice == 5:
-                pass
+                task5()
             elif choice == 6:
                 print("Завершение работы...")
                 break

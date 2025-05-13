@@ -4,8 +4,6 @@ from textwrap import dedent
 
 
 class TextHandler:
-    """Базовый класс для обработки текста"""
-
     def __init__(self, text):
         self.text = text
         self.words = re.findall(r'\b\w+\b', text)
@@ -15,8 +13,6 @@ class TextHandler:
 
 
 class TextAnalyzer(TextHandler):
-    """Класс для анализа текста, наследует TextHandler"""
-
     def __init__(self, text):
         super().__init__(text)
         self.sentences = re.split(r'(?<=[.!?])\s+', text)
@@ -70,8 +66,6 @@ class TextAnalyzer(TextHandler):
 
 
 class ReportManager:
-    """Класс для управления отчетами и архивацией"""
-
     @staticmethod
     def save_report(data, filename):
         with open(filename, 'w', encoding='utf-8') as f:
@@ -86,17 +80,13 @@ class ReportManager:
 
 def task2():
     try:
-        # Чтение файла
         with open('input.txt', 'r', encoding='utf-8') as f:
             text = f.read()
 
-        # Инициализация анализатора
         analyzer = TextAnalyzer(text)
 
-        # Запрос символа для замены
         replace_char = input("Введите символ для замены пробелов: ")[0]
 
-        # Сбор статистики
         stats = {
             'sentence': analyzer.get_sentence_stats(),
             'smileys': analyzer.find_smileys(),
@@ -109,7 +99,6 @@ def task2():
             'avg': analyzer.calculate_averages()
         }
 
-        # Формирование отчета
         report = dedent(f"""
         Результаты анализа:
         Всего предложений: {stats['sentence']['total']}
@@ -125,7 +114,6 @@ def task2():
         Первое слово с 'z': {stats['z_word'] or "Не найдено"}
         """)
 
-        # Вывод и сохранение
         print(report)
         ReportManager.save_report(report, 'output.txt')
         zip_info = ReportManager.create_zip('output.txt')
